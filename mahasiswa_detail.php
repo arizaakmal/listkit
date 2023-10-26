@@ -25,11 +25,11 @@ $data = $obj_person->view($_GET['id']);
                         <?php
                         if ($data['foto'] != null) {
                         ?>
-                            <img src="img/mahasiswa/<?= $data['foto']; ?>" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+                            <img src="img/mahasiswa/<?= $data['foto']; ?>" alt="avatar" class="rounded-circle border border-1 border-secondary img-fluid" style="width: 150px;">
                         <?php
                         } else {
                         ?>
-                            <img src="img/no-photo.gif" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+                            <img src="img/no-photo.gif" alt="avatar" class="rounded-circle border border-1 border-secondary img-fluid" style="width: 150px;">
                         <?php   }
                         ?>
 
@@ -87,15 +87,7 @@ $data = $obj_person->view($_GET['id']);
                             </div>
                             <div class="col-sm-9">
                                 <p class="text-muted mb-0">
-                                    <?php
-                                    if ($data['gender'] === 'L') {
-                                        echo 'Laki-laki';
-                                    } elseif ($data['gender'] === 'P') {
-                                        echo 'Perempuan';
-                                    } else {
-                                        echo 'Tidak diketahui';
-                                    }
-                                    ?>
+                                    <?= $data['gender']; ?>
                                 </p>
                             </div>
                         </div>
@@ -124,7 +116,7 @@ $data = $obj_person->view($_GET['id']);
                             </div>
                             <div class="col-sm-9">
                                 <?php
-                                $tgl_lahir = date("d F Y", strtotime($data['tgl_lahir']));
+                                $tgl_lahir = date('j F Y', strtotime($data['tgl_lahir']));
                                 ?>
                                 <p class="text-muted mb-0"><?= $data['tempat_lahir'] . ', ' . $tgl_lahir; ?></p>
                             </div>

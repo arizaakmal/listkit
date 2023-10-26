@@ -1,7 +1,7 @@
 <?php
 $obj_agama = new Agama();
 $data = $obj_agama->index();
-$arr_gender = ['L', 'P'];
+$arr_gender = ['Laki-laki', 'Perempuan'];
 
 if (isset($_REQUEST['id'])) {
     $id = $_REQUEST['id'];
@@ -54,13 +54,7 @@ if (isset($_REQUEST['id'])) {
                                 <div class="form-check me-3">
                                     <input class="form-check-input" type="radio" name="gender" id="gender" value="<?= $gender ?>" <?= $sel; ?>>
                                     <label class="form-check-label" for="gender">
-                                        <?php
-                                        if ($gender == 'L') {
-                                            echo "Laki-laki";
-                                        } else {
-                                            echo "Perempuan";
-                                        }
-                                        ?>
+                                        <?= $gender; ?>
                                     </label>
                                 </div>
                             <?php
