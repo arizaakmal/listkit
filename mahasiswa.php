@@ -3,7 +3,12 @@ $arr_judul = ['No', 'Nama Lengkap', 'Jenis Kelamin', 'Agama', 'Asal Kampus', 'Ak
 //ciptakan object dari class Jenis
 $obj_person = new Person();
 //panggil fungsionalitas terkait
-$data = $obj_person->index();
+if (isset($_GET['keyword'])) {
+    $keyword = $_GET['keyword'];
+    $data = $obj_person->search($keyword);
+} else {
+    $data = $obj_person->index();
+}
 //print_r($rs); die();
 ?>
 
@@ -20,11 +25,12 @@ $data = $obj_person->index();
                 <a href="index.php?hal=form_mahasiswa" class="btn btn-success rounded-pill"><i class="fas fa-plus-circle"></i> Tambah Data</a>
                 <div class="text-end border-dark search-btn w-25 ms-auto">
                     <div class="search-form">
-                        <form method="post" action="index.html">
+                        <form method="GET">
                             <div class="form-group">
                                 <div class="d-flex">
-                                    <input type="search" class="form-control border-1 rounded-pill me-3" name="search-input" value="" placeholder="Cari..." required="" />
+                                    <input type="search" class="form-control border-1 rounded-pill me-3" name="keyword" placeholder="Cari..." />
                                     <button type="submit" value="Search Now!" class="btn"><i class="fa fa-search text-dark"></i></button>
+                                    <input type="hidden" name="hal" value="mahasiswa" />
                                 </div>
                             </div>
                         </form>
@@ -53,7 +59,7 @@ $data = $obj_person->index();
                         <tr>
                             <th scope="row"><?= $no; ?></th>
                             <td><?= $mhs['nama']; ?></td>
-                            <td><?= $mhs['gender'] === 'L' ? 'Laki-laki' : 'Perempuan'; ?></td>
+                            <td><?= $mhs['gender']; ?></td>
                             <td><?= $mhs['nama_agama']; ?></td>
                             <td><?= $mhs['asal_kampus']; ?></td>
                             <td>
