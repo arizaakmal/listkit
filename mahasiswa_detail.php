@@ -1,96 +1,159 @@
 <?php
-$arr_judul = ['Nama Lengkap', 'Jenis Kelamin', 'Agama', 'Asal Kampus', 'No Handphone', 'Email', 'Alamat', 'Tempat dan Tanggal Lahir', 'Sosial Media (Instagram)'];
+$arr_judul = ['Nama Lengkap', 'Jenis Kelamin', 'Agama', 'Asal Kampus', 'No Handphone', 'Email', 'Alamat', 'Tempat dan Tanggal Lahir'];
 
 $obj_person = new Person();
 $data = $obj_person->view($_GET['id']);
 ?>
 
-<!-- Project Start -->
-<!-- Get In Touch Start -->
-<div class="container-fluid py-5 wow fadeInUp" data-wow-delay=".3s">
+
+<section style="background-color: #eee;">
     <div class="container py-5">
-        <div class="bg-light px-4 py-5 rounded">
-            <div class="text-center mb-3">
-                <h1 class="display-5">Biodata</h1>
+        <div class="row">
+            <div class="col">
+                <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item"><a class="text-dark" href="index.php?hal=mahasiswa">Mahasiswa</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Detail</li>
+                    </ol>
+                </nav>
             </div>
-            <div class="row g-4">
-                <div class="col-lg-4 text-center">
-                    <?php
-                    if (!empty($data['foto'])) {
-                    ?>
-                        <img src="img/<?= $data['foto']; ?>" class="img-fluid rounded-circle" alt="" />
-                    <?php
-                    } else {
-                    ?>
-                        <img src="img/no-photo.gif" class="img-fluid w-75 rounded-circle" alt="" />
-                    <?php } ?>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card mb-4">
+                    <div class="card-body text-center">
+                        <?php
+                        if ($data['foto'] != null) {
+                        ?>
+                            <img src="img/mahasiswa/<?= $data['foto']; ?>" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+                        <?php
+                        } else {
+                        ?>
+                            <img src="img/no-photo.gif" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+                        <?php   }
+                        ?>
+
+                        <h5 class="my-3"><?= $data['nama']; ?></h5>
+                        <p class="text-muted mb-1">Full Stack Developer</p>
+                        <p class="text-muted mb-4"><?= $data['alamat']; ?></p>
+
+                    </div>
                 </div>
-                <div class="col-lg-8">
-                    <ul type="none" class="fs-5">
-                        <li class="mb-2">
-                            <i class="bi bi-chevron-right me-2"></i>
-                            <strong>Nama Lengkap:</strong>
-                            <span><?= $data['nama']; ?></span>
-                        </li>
-                        <li class="mb-2">
-                            <i class="bi bi-chevron-right me-2"></i>
-                            <strong>Jenis Kelamin:</strong>
-                            <span>
+                <div class="card mb-4">
+                    <div class="card-body p-0">
+                        <ul class="list-group list-group-flush rounded-3">
+                            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
+                                <p class="mb-0"><?= $data['sosmed']; ?></p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-8">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Nama Lengkap</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0"><?= $data['nama']; ?></p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Email</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0"><?= $data['email']; ?></p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">No. Handphone</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0"><?= $data['hp']; ?></p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Jenis Kelamin</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">
+                                    <?php
+                                    if ($data['gender'] === 'L') {
+                                        echo 'Laki-laki';
+                                    } elseif ($data['gender'] === 'P') {
+                                        echo 'Perempuan';
+                                    } else {
+                                        echo 'Tidak diketahui';
+                                    }
+                                    ?>
+                                </p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Agama</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0"><?= $data['nama_agama']; ?></p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Asal Kampus</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0"><?= $data['asal_kampus']; ?></p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Tempat/Tanggal Lahir</p>
+                            </div>
+                            <div class="col-sm-9">
                                 <?php
-                                if ($data['gender'] === 'L') {
-                                    echo 'Laki-laki';
-                                } elseif ($data['gender'] === 'P') {
-                                    echo 'Perempuan';
-                                } else {
-                                    echo 'Tidak diketahui';
-                                }
+                                $tgl_lahir = date("d F Y", strtotime($data['tgl_lahir']));
                                 ?>
-                            </span>
-                        </li>
-                        <li class="mb-2">
-                            <i class="bi bi-chevron-right me-2"></i>
-                            <strong>Agama:</strong>
-                            <span><?= $data['nama_agama']; ?></span>
-                        </li>
-                        <li class="mb-2">
-                            <i class="bi bi-chevron-right me-2"></i>
-                            <strong>Asal Kampus:</strong>
-                            <span><?= $data['asal_kampus']; ?></span>
-                        </li>
-                        <li class="mb-2">
-                            <i class="bi bi-chevron-right me-2"></i>
-                            <strong>No Handphone:</strong>
-                            <span><?= $data['hp']; ?></span>
-                        </li>
-                        <li class="mb-2">
-                            <i class="bi bi-chevron-right me-2"></i>
-                            <strong>Email:</strong>
-                            <span><?= $data['email']; ?></span>
-                        </li>
-                        <li class="mb-2">
-                            <i class="bi bi-chevron-right me-2"></i>
-                            <strong>Alamat:</strong>
-                            <span><?= $data['alamat']; ?></span>
-                        </li>
-                        <li class="mb-2">
-                            <?php
-                            $tgl_lahir = date("d F Y", strtotime($data['tgl_lahir']));
-                            ?>
-                            <i class="bi bi-chevron-right me-2"></i>
-                            <strong>Tempat dan Tanggal Lahir:</strong>
-                            <span><?= $data['tempat_lahir'] . ', ' . $tgl_lahir; ?></span>
-                        </li>
-                        <li class="mb-2">
-                            <i class="bi bi-chevron-right me-2"></i>
-                            <strong>Instagram:</strong>
-                            <span><?= $data['sosmed']; ?></span>
-                        </li>
-                    </ul>
+                                <p class="text-muted mb-0"><?= $data['tempat_lahir'] . ', ' . $tgl_lahir; ?></p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Alamat</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0"><?= $data['alamat']; ?></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-4 mb-lg-0">
+                    <div class="card-body p-0">
+                        <div class="row p-3">
+                            <div class="col text-center">
+                                <p class="blockquote mb-0"><i class="fa fa-quote-left"></i> <?= $data['quotes']; ?> <i class="fa fa-quote-right"></i></p>
+                            </div>
+
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!-- Get In Touch End -->
+</section>
 
 <!-- Project End -->
