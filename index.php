@@ -37,6 +37,7 @@
   <!-- Spinner End -->
 
   <?php
+  session_start();
   include_once("koneksi.php");
   include_once("models/Agama.php");
   include_once("models/Person.php");

@@ -10,17 +10,31 @@
               </button>
               <div class="collapse navbar-collapse me-n3" id="navbarCollapse">
                   <div class="navbar-nav ms-auto">
-                      <a href="index.php" class="nav-item nav-link active">Home</a>
-                      <a href="about.html" class="nav-item nav-link">About</a>
-                      <div class="nav-item dropdown">
-                          <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">List</a>
-                          <div class="dropdown-menu m-0 bg-primary">
-                              <a href="index.php?hal=agama" class="dropdown-item">Agama</a>
-                              <a href="index.php?hal=mahasiswa" class="dropdown-item">Mahasiswa</a>
+                      <?php
+                        if (isset($_SESSION['MEMBER'])) {
+                            $data = $_SESSION['MEMBER'];
+                        ?>
+                          <div class="nav-item dropdown">
+                              <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><?= $data['fullname']; ?></a>
+                              <div class="dropdown-menu m-0 bg-primary">
+                                  <?php
+                                    if ($_SESSION['MEMBER']['role'] == 'admin') {
+                                    ?>
+                                      <a href="index.php?hal=member" class="dropdown-item">Member</a>
+                                  <?php } ?>
+                                  <a href="index.php?hal=agama" class="dropdown-item">Agama</a>
+                                  <a href="index.php?hal=mahasiswa" class="dropdown-item">Mahasiswa</a>
+                              </div>
                           </div>
-                      </div>
+                      <?php } ?>
                       <!-- <a href="contact.html" class="nav-item nav-link">Contact</a> -->
-                      <a href="" class=""><button type="button" class="my-2 btn btn-primary border-2 rounded-pill animated">Login</button></a>
+                      <?php
+                        if (isset($_SESSION['MEMBER'])) {
+                        ?>
+                          <a href="logout.php"><button type="button" class="my-2 btn btn-primary border-2 rounded-pill animated">Logout</button></a>
+                      <?php } else { ?>
+                          <a href="login.php"><button type="button" class="my-2 btn btn-primary border-2 rounded-pill animated">Login</button></a>
+                      <?php } ?>
                   </div>
               </div>
           </nav>

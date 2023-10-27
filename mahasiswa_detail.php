@@ -12,7 +12,7 @@ $data = $obj_person->view($_GET['id']);
             <div class="col">
                 <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
                     <ol class="breadcrumb mb-0">
-                        <li class="breadcrumb-item"><a class="text-dark" href="index.php?hal=mahasiswa">Mahasiswa</a></li>
+                        <li class="breadcrumb-item"><a class="text-dark fw-bold" href="index.php?hal=mahasiswa">Mahasiswa</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Detail</li>
                     </ol>
                 </nav>
@@ -56,7 +56,7 @@ $data = $obj_person->view($_GET['id']);
                     <div class="card-body">
                         <div class="row">
                             <div class="col-sm-3">
-                                <p class="mb-0">Nama Lengkap</p>
+                                <p class="mb-0 fw-bold">Nama Lengkap</p>
                             </div>
                             <div class="col-sm-9">
                                 <p class="text-muted mb-0"><?= $data['nama']; ?></p>
@@ -65,7 +65,7 @@ $data = $obj_person->view($_GET['id']);
                         <hr>
                         <div class="row">
                             <div class="col-sm-3">
-                                <p class="mb-0">Email</p>
+                                <p class="mb-0 fw-bold">Email</p>
                             </div>
                             <div class="col-sm-9">
                                 <p class="text-muted mb-0"><?= $data['email']; ?></p>
@@ -74,7 +74,7 @@ $data = $obj_person->view($_GET['id']);
                         <hr>
                         <div class="row">
                             <div class="col-sm-3">
-                                <p class="mb-0">No. Handphone</p>
+                                <p class="mb-0 fw-bold">No. Handphone</p>
                             </div>
                             <div class="col-sm-9">
                                 <p class="text-muted mb-0"><?= $data['hp']; ?></p>
@@ -83,7 +83,7 @@ $data = $obj_person->view($_GET['id']);
                         <hr>
                         <div class="row">
                             <div class="col-sm-3">
-                                <p class="mb-0">Jenis Kelamin</p>
+                                <p class="mb-0 fw-bold">Jenis Kelamin</p>
                             </div>
                             <div class="col-sm-9">
                                 <p class="text-muted mb-0">
@@ -94,7 +94,7 @@ $data = $obj_person->view($_GET['id']);
                         <hr>
                         <div class="row">
                             <div class="col-sm-3">
-                                <p class="mb-0">Agama</p>
+                                <p class="mb-0 fw-bold">Agama</p>
                             </div>
                             <div class="col-sm-9">
                                 <p class="text-muted mb-0"><?= $data['nama_agama']; ?></p>
@@ -103,7 +103,7 @@ $data = $obj_person->view($_GET['id']);
                         <hr>
                         <div class="row">
                             <div class="col-sm-3">
-                                <p class="mb-0">Asal Kampus</p>
+                                <p class="mb-0 fw-bold">Asal Kampus</p>
                             </div>
                             <div class="col-sm-9">
                                 <p class="text-muted mb-0"><?= $data['asal_kampus']; ?></p>
@@ -112,7 +112,7 @@ $data = $obj_person->view($_GET['id']);
                         <hr>
                         <div class="row">
                             <div class="col-sm-3">
-                                <p class="mb-0">Tempat/Tanggal Lahir</p>
+                                <p class="mb-0 fw-bold">Tempat/Tanggal Lahir</p>
                             </div>
                             <div class="col-sm-9">
                                 <?php
@@ -124,7 +124,7 @@ $data = $obj_person->view($_GET['id']);
                         <hr>
                         <div class="row">
                             <div class="col-sm-3">
-                                <p class="mb-0">Alamat</p>
+                                <p class="mb-0 fw-bold">Alamat</p>
                             </div>
                             <div class="col-sm-9">
                                 <p class="text-muted mb-0"><?= $data['alamat']; ?></p>

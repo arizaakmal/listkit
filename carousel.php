@@ -12,7 +12,14 @@
                      <div class="container carousel-content">
                          <h4 class="text-white mb-4 animated slideInDown">NF Computer</h4>
                          <h1 class="text-white display-1 mb-4 animated slideInDown"><span class="text-primary">List Mahasiswa</span> Akademi Fullstack Web Developer</h1>
-                         <a href="" class="me-2"><button type="button" class="px-5 py-3 btn btn-primary border-2 rounded-pill animated slideInDown">Get Started</button></a>
+                         <?php
+                            if (isset($_SESSION['MEMBER'])) {
+                            ?>
+                             <a href="index.php?hal=mahasiswa" class="me-2"><button type="button" class="px-5 py-3 btn btn-primary border-2 rounded-pill animated slideInDown">Get Started</button></a>
+                         <?php } else {
+                            ?>
+                             <a href="login.php" class="me-2"><button type="button" class="px-5 py-3 btn btn-primary border-2 rounded-pill animated slideInDown">Get Started</button></a>
+                         <?php } ?>
                      </div>
                  </div>
              </div>
@@ -22,7 +29,14 @@
                      <div class="container carousel-content">
                          <h4 class="text-white mb-4 animated slideInDown">NF Computer</h4>
                          <h1 class="text-white display-1 mb-4 animated slideInDown"><span class="text-primary">List Mahasiswa</span> Akademi Fullstack Web Developer</h1>
-                         <a href="" class="me-2"><button type="button" class="px-5 py-3 btn btn-primary border-2 rounded-pill animated slideInDown">Get Started</button></a>
+                         <?php
+                            if (isset($_SESSION['MEMBER'])) {
+                            ?>
+                             <a href="index.php?hal=mahasiswa" class="me-2"><button type="button" class="px-5 py-3 btn btn-primary border-2 rounded-pill animated slideInDown">Get Started</button></a>
+                         <?php } else {
+                            ?>
+                             <a href="login.php" class="me-2"><button type="button" class="px-5 py-3 btn btn-primary border-2 rounded-pill animated slideInDown">Get Started</button></a>
+                         <?php } ?>
                      </div>
                  </div>
              </div>

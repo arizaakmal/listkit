@@ -10,6 +10,7 @@ if (isset($_GET['keyword'])) {
     $data = $obj_person->index();
 }
 //print_r($rs); die();
+
 ?>
 
 
