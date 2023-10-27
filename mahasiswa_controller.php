@@ -58,10 +58,3 @@ switch ($tombol) {
 header('location:index.php?hal=mahasiswa');
 
 //----------proses pencarian data---------------
-$tombol_cari = $_GET['proses_cari']; // untuk keperluan eksekusi sebuah tombol di form
-
-if (isset($tombol_cari)) {
-    //print_r('###########################'.$_GET['keyword']); 
-    $obj_produk->cari($_GET['keyword']);
-    header('location:index.php?hal=produk_cari');
-}
