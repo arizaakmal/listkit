@@ -1,5 +1,7 @@
 <?php
-
+if (!isset($_SESSION['MEMBER'])) {
+    header('location:index.php');
+}
 //ciptakan object dari class Jenis
 $obj_agama = new Agama();
 //panggil fungsionalitas terkait

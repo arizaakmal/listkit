@@ -38,14 +38,33 @@
 
   <?php
   session_start();
+
+
+
+
+
   include_once("koneksi.php");
   include_once("models/Agama.php");
   include_once("models/Person.php");
+  include_once("models/Member.php");
+
+  if (isset($_COOKIE['remember']) && !isset($_SESSION['MEMBER'])) {
+    $id = $_COOKIE['remember'];
+    $obj_member = new Member();
+    $data = $obj_member->getMember($id);
+    $_SESSION['MEMBER'] = $data;
+  }
+
   include_once("navbar.php");
 
   if (isset($_REQUEST["hal"])) {
     $hal = $_REQUEST["hal"];
-    include_once $hal . ".php";
+    $halaman = $hal . ".php";
+    if (file_exists($halaman)) {
+      include_once $halaman;
+    } else {
+      include_once("404.php");
+    }
   } else {
     include_once("carousel.php");
   }

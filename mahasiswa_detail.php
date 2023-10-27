@@ -1,4 +1,7 @@
 <?php
+if (!isset($_SESSION['MEMBER'])) {
+    header('location:index.php');
+}
 $arr_judul = ['Nama Lengkap', 'Jenis Kelamin', 'Agama', 'Asal Kampus', 'No Handphone', 'Email', 'Alamat', 'Tempat dan Tanggal Lahir'];
 
 $obj_person = new Person();

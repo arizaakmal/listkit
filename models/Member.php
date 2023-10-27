@@ -12,7 +12,7 @@ class Member
     //member3 fungsionalitas
     public function index()
     {
-        $sql = "SELECT * FROM member ORDER BY id DESC";
+        $sql = "SELECT * FROM member ORDER BY role";
         //PDO prepare statement
         $ps = $this->koneksi->prepare($sql);
         $ps->execute();
@@ -64,6 +64,16 @@ class Member
         $ps = $this->koneksi->prepare($sql);
         $ps->execute($data);
         $rs = $ps->fetch();
+        return $rs;
+    }
+
+    public function search($keyword)
+    {
+        $sql = "SELECT * FROM member WHERE fullname LIKE '%$keyword%' OR email LIKE '%$keyword%' OR username LIKE '%$keyword%' OR role LIKE '%$keyword%' ORDER BY role";
+        //PDO prepare statement
+        $ps = $this->koneksi->prepare($sql);
+        $ps->execute();
+        $rs = $ps->fetchAll();
         return $rs;
     }
 }

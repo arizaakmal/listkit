@@ -1,16 +1,16 @@
 <?php
-if (!isset($_SESSION['MEMBER'])) {
+if ($_SESSION['MEMBER']['role'] != 'admin') {
     header('location:index.php');
 }
-$arr_judul = ['No', 'Nama Lengkap', 'Jenis Kelamin', 'Agama', 'Asal Kampus', 'Aksi'];
+$arr_judul = ['No', 'Nama Lengkap', 'Username', 'Email', 'Role', 'Foto', 'Aksi'];
 //ciptakan object dari class Jenis
-$obj_person = new Person();
+$obj_member = new Member();
 //panggil fungsionalitas terkait
 if (isset($_GET['keyword'])) {
     $keyword = $_GET['keyword'];
-    $data = $obj_person->search($keyword);
+    $data = $obj_member->search($keyword);
 } else {
-    $data = $obj_person->index();
+    $data = $obj_member->index();
 }
 //print_r($rs); die();
 
@@ -21,12 +21,11 @@ if (isset($_GET['keyword'])) {
 <div class="container-fluid py-5">
     <div class="container py-5">
         <div class="text-center mb-5 wow fadeInUp" data-wow-delay=".3s">
-            <h5 class="mb-2 px-3 py-1 text-dark rounded-pill d-inline-block border border-2 border-primary">Mahasiswa</h5>
-            <h1 class="display-5">List Data Seluruh Mahasiswa</h1>
+            <h5 class="mb-2 px-3 py-1 text-dark rounded-pill d-inline-block border border-2 border-primary">Member</h5>
+            <h1 class="display-5">List Data Seluruh Member</h1>
         </div>
         <div class="row g-5 wow fadeInUp" data-wow-delay=".3s">
             <div class="col d-flex">
-                <a href="index.php?hal=form_mahasiswa" class="btn btn-success rounded-pill"><i class="fas fa-plus-circle"></i> Tambah Data</a>
                 <div class="text-end border-dark search-btn w-25 ms-auto">
                     <div class="search-form">
                         <form method="GET">
@@ -34,7 +33,7 @@ if (isset($_GET['keyword'])) {
                                 <div class="d-flex">
                                     <input type="search" class="form-control border-1 rounded-pill me-3" name="keyword" placeholder="Cari..." />
                                     <button type="submit" value="Search Now!" class="btn"><i class="fa fa-search text-dark"></i></button>
-                                    <input type="hidden" name="hal" value="mahasiswa" />
+                                    <input type="hidden" name="hal" value="member" />
                                 </div>
                             </div>
                         </form>
@@ -58,21 +57,31 @@ if (isset($_GET['keyword'])) {
                 <tbody>
                     <?php
                     $no = 1;
-                    foreach ($data as $mhs) {
+                    foreach ($data as $member) {
                     ?>
                         <tr>
                             <th scope="row"><?= $no; ?></th>
-                            <td><?= $mhs['nama']; ?></td>
-                            <td><?= $mhs['gender']; ?></td>
-                            <td><?= $mhs['nama_agama']; ?></td>
-                            <td><?= $mhs['asal_kampus']; ?></td>
+                            <td><?= $member['fullname']; ?></td>
+                            <td><?= $member['username']; ?></td>
+                            <td><?= $member['email']; ?></td>
+                            <td><?= ucfirst($member['role']); ?></td>
+                            <?php
+                            if ($member['foto'] == '') {
+                                $member['foto'] = 'no-photo.gif';
+                            }
+                            ?>
+                            <td><img class="rounded-circle" src="img/<?= $member['foto']; ?>" width="30px" /></td>
                             <td>
-                                <form method="POST" action="mahasiswa_controller.php">
-                                    <a href="index.php?hal=mahasiswa_detail&id=<?= $mhs['id'] ?>" class="btn btn-info btn-sm"><i class="fas fa-info-circle"></i> Detail</a>
-                                    <a href="index.php?hal=form_mahasiswa&id=<?= $mhs['id'] ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i> Edit</a>
-                                    <button type="submit" class="btn btn-danger btn-sm" name="proses" value="hapus" onclick="return confirm('Anda yakin dihapus?')"><i class="fas fa-trash"></i> Hapus</button>
-                                    <input type="hidden" name="id" value="<?= $mhs['id'] ?>" />
-                                </form>
+                                <?php
+                                if ($member['role'] != 'admin') {
+                                ?>
+                                    <form method="POST" action="member_controller.php">
+                                        <button type="submit" class="btn btn-danger btn-sm" name="proses" value="hapus" onclick="return confirm('Anda yakin dihapus?')"><i class="fas fa-trash"></i> Hapus</button>
+                                        <input type="hidden" name="id" value="<?= $member['id'] ?>" />
+                                    </form>
+                                <?php    }
+                                ?>
+
                             </td>
                         </tr>
 

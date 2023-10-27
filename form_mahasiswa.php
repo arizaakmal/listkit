@@ -1,4 +1,7 @@
 <?php
+if (!isset($_SESSION['MEMBER'])) {
+    header('location:index.php');
+}
 $obj_agama = new Agama();
 $data = $obj_agama->index();
 $arr_gender = ['Laki-laki', 'Perempuan'];
