@@ -13,7 +13,7 @@ class Person
     public function index()
     {
         //$sql = "SELECT * FROM produk";
-        $sql = "SELECT person.*, agama.nama AS nama_agama FROM person INNER JOIN agama ON person.agama_id = agama.id";
+        $sql = "SELECT person.*, agama.nama AS nama_agama FROM person INNER JOIN agama ON person.agama_id = agama.id ORDER BY person.nama ASC";
         //$rs = $this->koneksi->query($sql);
         //PDO prepare statement
         $ps = $this->koneksi->prepare($sql);
@@ -60,9 +60,9 @@ class Person
 
     public function search($keyword)
     {
-        $sql = "SELECT person.*, agama.nama AS nama_agama FROM person INNER JOIN agama ON person.agama_id = agama.id WHERE person.nama LIKE '%$keyword%' OR agama.nama LIKE '%$keyword%' OR person.asal_kampus LIKE '%$keyword%' OR person.gender LIKE '%$keyword%'";
-        //PDO prepare statement
+        $sql = "SELECT person.*, agama.nama AS nama_agama FROM person INNER JOIN agama ON person.agama_id = agama.id WHERE person.nama LIKE :keyword OR agama.nama LIKE :keyword OR person.asal_kampus LIKE :keyword OR person.gender LIKE :keyword";
         $ps = $this->koneksi->prepare($sql);
+        $ps->bindValue(':keyword', '%' . $keyword . '%', PDO::PARAM_STR);
         $ps->execute();
         $rs = $ps->fetchAll();
         return $rs;

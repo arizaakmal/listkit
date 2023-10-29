@@ -6,6 +6,8 @@ $arr_judul = ['Nama Lengkap', 'Jenis Kelamin', 'Agama', 'Asal Kampus', 'No Handp
 
 $obj_person = new Person();
 $data = $obj_person->view($_GET['id']);
+
+
 ?>
 
 
@@ -27,8 +29,11 @@ $data = $obj_person->view($_GET['id']);
                     <div class="card-body text-center">
                         <?php
                         if ($data['foto'] != null) {
+                            $parts = explode('=', $data['foto']);
+                            $id = $parts[1];
+                            $data['foto'] = 'https://drive.google.com/uc?export=view&id=' . $id;
                         ?>
-                            <img src="img/mahasiswa/<?= $data['foto']; ?>" alt="avatar" class="rounded-circle border border-1 border-secondary img-fluid" style="width: 150px;">
+                            <img src="<?= $data['foto'] ?>" class="rounded-circle border border-1 border-secondary img-fluid shadow" style="width: 150px; height: 150px;">
                         <?php
                         } else {
                         ?>
@@ -42,16 +47,22 @@ $data = $obj_person->view($_GET['id']);
 
                     </div>
                 </div>
-                <div class="card mb-4">
-                    <div class="card-body p-0">
-                        <ul class="list-group list-group-flush rounded-3">
-                            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
-                                <p class="mb-0"><?= $data['sosmed']; ?></p>
-                            </li>
-                        </ul>
+                <?php
+                if ($data['sosmed'] != null) {
+                ?>
+                    <div class="card mb-4">
+                        <div class="card-body p-0">
+                            <ul class="list-group list-group-flush rounded-3">
+                                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                    <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
+                                    <p class="mb-0"><?= $data['sosmed']; ?></p>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
+                <?php }
+                ?>
+
 
             </div>
             <div class="col-lg-8">
@@ -135,17 +146,21 @@ $data = $obj_person->view($_GET['id']);
                         </div>
                     </div>
                 </div>
-                <div class="card mb-4 mb-lg-0">
-                    <div class="card-body p-0">
-                        <div class="row p-3">
-                            <div class="col text-center">
-                                <p class="blockquote mb-0"><i class="fa fa-quote-left"></i> <?= $data['quotes']; ?> <i class="fa fa-quote-right"></i></p>
+                <?php
+                if ($data['quotes'] != null) {
+                ?>
+                    <div class="card mb-4 mb-lg-0">
+                        <div class="card-body p-0">
+                            <div class="row p-3">
+                                <div class="col text-center">
+                                    <p class="blockquote mb-0"><i class="fa fa-quote-left"></i> <?= $data['quotes']; ?> <i class="fa fa-quote-right"></i></p>
+                                </div>
                             </div>
-
                         </div>
-
                     </div>
-                </div>
+                <?php  }
+                ?>
+
             </div>
         </div>
     </div>

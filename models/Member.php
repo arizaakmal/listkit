@@ -69,9 +69,9 @@ class Member
 
     public function search($keyword)
     {
-        $sql = "SELECT * FROM member WHERE fullname LIKE '%$keyword%' OR email LIKE '%$keyword%' OR username LIKE '%$keyword%' OR role LIKE '%$keyword%' ORDER BY role";
-        //PDO prepare statement
+        $sql = "SELECT * FROM member WHERE fullname LIKE :keyword OR email LIKE :keyword OR username LIKE :keyword OR role LIKE :keyword ORDER BY role";
         $ps = $this->koneksi->prepare($sql);
+        $ps->bindValue(':keyword', '%' . $keyword . '%', PDO::PARAM_STR);
         $ps->execute();
         $rs = $ps->fetchAll();
         return $rs;

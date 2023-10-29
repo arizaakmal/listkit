@@ -62,15 +62,15 @@ if (isset($_GET['keyword'])) {
                     ?>
                         <tr>
                             <th scope="row"><?= $no; ?></th>
-                            <td><?= $mhs['nama']; ?></td>
+                            <td><?= ucwords(strtolower($mhs['nama'])); ?></td>
                             <td><?= $mhs['gender']; ?></td>
                             <td><?= $mhs['nama_agama']; ?></td>
                             <td><?= $mhs['asal_kampus']; ?></td>
                             <td>
                                 <form method="POST" action="mahasiswa_controller.php">
-                                    <a href="index.php?hal=mahasiswa_detail&id=<?= $mhs['id'] ?>" class="btn btn-info btn-sm"><i class="fas fa-info-circle"></i> Detail</a>
-                                    <a href="index.php?hal=form_mahasiswa&id=<?= $mhs['id'] ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i> Edit</a>
-                                    <button type="submit" class="btn btn-danger btn-sm" name="proses" value="hapus" onclick="return confirm('Anda yakin dihapus?')"><i class="fas fa-trash"></i> Hapus</button>
+                                    <a href="index.php?hal=mahasiswa_detail&id=<?= $mhs['id'] ?>" class="btn btn-info btn-sm m-1"><i class="fas fa-info-circle"></i> Detail</a>
+                                    <a href="index.php?hal=form_mahasiswa&id=<?= $mhs['id'] ?>" class="btn btn-warning btn-sm m-1"><i class="fas fa-edit"></i> Edit</a>
+                                    <button type="submit" class="btn btn-danger btn-sm m-1" name="proses" value="hapus" onclick="return confirm('Anda yakin dihapus?')"><i class="fas fa-trash"></i> Hapus</button>
                                     <input type="hidden" name="id" value="<?= $mhs['id'] ?>" />
                                 </form>
                             </td>

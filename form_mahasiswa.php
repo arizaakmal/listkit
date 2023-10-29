@@ -92,7 +92,7 @@ if (isset($_REQUEST['id'])) {
                     </div>
                     <div class="col-md-12">
                         <label for="sosmed" class="form-label">Sosial Media (Instagram)</label>
-                        <input type="text" class="form-control" id="sosmed" name="sosmed" value="<?= isset($_REQUEST['id']) ? $row['sosmed'] : '' ?>" required>
+                        <input type="text" class="form-control" id="sosmed" name="sosmed" value="<?= isset($_REQUEST['id']) ? $row['sosmed'] : '' ?>">
                     </div>
                     <div class="col-md-12">
                         <label for="foto" class="form-label">Foto</label>
@@ -100,7 +100,7 @@ if (isset($_REQUEST['id'])) {
                     </div>
                     <div class="col-md-12">
                         <label for="quotes" class="form-label">Quotes</label>
-                        <textarea name="quotes" id="quotes" class="form-control" rows="5" required><?= isset($_REQUEST['id']) ? $row['quotes'] : '' ?></textarea>
+                        <textarea name="quotes" id="quotes" class="form-control" rows="5"><?= isset($_REQUEST['id']) ? $row['quotes'] : '' ?></textarea>
                     </div>
                     <div class="col-12">
                         <?php
